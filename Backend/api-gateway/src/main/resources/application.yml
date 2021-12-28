@@ -1,0 +1,41 @@
+server:
+  port: 9000
+  
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: admin-contact-service
+        uri:
+          http://localhost:9001/
+        predicates:
+        - Path=/contacts/**
+        
+      - id: train-service
+        uri:
+          http://localhost:9002/
+        predicates:
+        - Path=/trains/**
+        
+      - id: train-booking-service
+        uri:
+          http://localhost:9003/
+        predicates:
+        - Path=/bookings/**
+        
+      - id: payment-service
+        uri:
+          http://localhost:9004/
+        predicates:
+        - Path=/**
+        
+      - id: User_login
+        uri:
+          http://localhost:9005/
+        predicates:
+        - Path=/**
+         
+  application:
+    name: api-gateway
+          
+  
